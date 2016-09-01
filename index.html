@@ -251,6 +251,7 @@
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 					<h3>About</h3>
+					<small>Create by Paul Gregotski, Kurt Schaller, Jake Valinotti, and Kevin Nash</small><br>
 					<p>
 					Welcome to AIG Game, a game that can be deployed on a social network to help teach risk mitigation. This game is geared to make implicit risks explicit through gameplay and socializing through the game. Implicit risks are risks that people bear based on their daily activities. These risks are not inherently expressive, and thus many people will go about their day without knowing they are assuming these implicit risks. Examples of these implicit risks are when people use their technological devices. They are open to a plethora of security risks of having their information stolen or worse. The goal of this game to effectively make these risks implicit so that users can make more informed decisions and be smarter about the risks that they take on. <br><br>
 In addition to the implicit risks, the game also takes a social approach. The goal of this game would be to deploy it alongside a social network such as Facebook which contains many games. This would allow players to connect with friends. The game allows users to see each other’s risk profile. A risk profile is a comprehensive profile based on risk management techniques. The techniques are avoidance, acceptance, transferring risk, and reducing risk. These are further broken up into sub-categories and assigned values based on gameplay. Users can answer questions to affect their risk profile in game to determine inherent risks in each activity. Furthermore, there are mini games which track specific actions the user takes when faced with a scenario. The example mini game that is deployed is a street crossing mini game where the player must cross the street while collecting stars and diamonds. The game tracks movement and score while increasing difficulty. Afterwards, the players risk profile is changed to reflect their risks they assumed and took during the game. <br><br>
@@ -434,7 +435,62 @@ The second audience is more fickle because this is the mainstream consumer who w
 			<?php } ?>
 		</div>
 	  <div class="tab-pane" id="Guide">
-			
+			<center>
+				<h2>Guide to AIG Game</h2>
+			</center>
+			<h3>General:</h3>
+			<p>
+				Please create an Account in the Account tab. Use an email, preferably a @gmail.com email to sign up using a unique screen name tied to your email account and a password.
+				Don't worry about passwords as they are stored securely on the server using a hash and a unique salt. You can go to your Account tab to change your sprite any time you want
+				to be any sprite just click on it and hit Save Changes. In this screen you can also see your own risk profile.
+				<br><br>
+				After creating an account you can head over to Social to add friends. Happy and Scary and default bots who have unique risk profiles based on their name. Add them as a friend
+				allows you to see their risk profile and if you refresh the page they can load into the game with you as well.
+				<br><br>
+				After setting up your account and using the social tab, then just follow the steps below to navigate through the screens and activities.
+			</p>
+			<hr>
+			<h2>Main Menu:</h2>
+			<p>
+				The first thing that is seen after all assets are loaded. Control volume, song selection and starting the game by clicking on Play here.
+			</p>
+			<img class="img-responsive" src="img/mainmenu.png"></img>
+			<h2>Play Hub:</h2>
+			<p>
+				Move using WASD or Arrow Keys. You are the sprite you have chosen in Account. Other sprites may appear based on friendlist in the Social Tab. You can get back to the main menu any time by click the three lines at the top left corner.
+				<br><br>
+				There are 4 activities to do in this hub.
+				<ol>
+					<li>Play a Mini Game by going up to the blue curtains.</li>
+					<li>Make a decision by walking to the desk</li>
+					<li>Run a simulation by walking to the crystal</li>
+					<li>Check your risk profile by walking to the Go board</li>
+				</ol>
+			</p>
+			<img class="img-responsive" src="img/play.png"></img>
+			<h2>Mini Game:</h2>
+			<p>
+				The goal of the game is to collect stars and rare diamonds. Doing this will cause traffic to move faster and become more dense, but don't worry because your sprite will also speed up!
+				<br><br>
+				The game tracks many tendencies during play, and thus your risk profile is updated after every death based on score and other factors.
+			</p>
+			<img class="img-responsive" src="img/minigame.png"></img>
+			<h2>Decisions:</h2>
+			<p>
+				These are not permanent changes to risk profile, but rather temporary effects for the user to observe and try out on the the simulation.
+				Simply click on the answer or hit the X in the top left corner to cancel.
+			</p>
+			<img class="img-responsive" src="img/dec.png"></img>
+			<h2>Risk Profile:</h2>
+			<p>
+				Seven categories based on risk management techniques of avoidance, transferring risk, reducing risk, and accepting risk. This changes based on minigame performance and temporarily for decisions. This affects the simulation outcome as it measure risk tendencies.
+			</p>
+			<img class="img-responsive" src="img/risk.png"></img>
+			<h2>Scrying Orb Simulation:</h2>
+			<p>
+				Find the safest and riskiest person in your group. This can be the same person depending on their tendencies, but it is unlikely. It also shows the current state of your world based on your group's risk tendencies are. Finally it projects that 100 years into the future to show how rapid your tendencies will take you to either your destruction or to a perfect Utopia.
+			</p>
+			<img class="img-responsive" src="img/scry.png"></img>
 		</div>
 		<div class="tab-pane" id="Account">
 		  <center>
