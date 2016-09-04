@@ -62,6 +62,7 @@ function loginFunction(info){
 	   success: function(data) {
 		   $("#loadLogin").hide();
 			//handle exit codes
+			console.log(data);
 			if(data == 0){
 				window.location.href = "http://projects.miscthings.xyz/AIG/";
 			}else if(data == 1){
@@ -135,7 +136,7 @@ function addFriend(string){
 		$("#friends").html("<h4><img src='"+src+"'/> &nbsp; "+name+" <button type='button' data-toggle='modal' data-target='#friendChart' class='btn btn-default' onclick=\"showRisk('"+risk+"')\">Risk</button> &nbsp; <button type='button' class='btn btn-danger' onclick=\"removeFriend('"+name+"')\">X</button></h4>");
 	}else{
 		var html = $("#friends").html();
-		$("#friends").html(html+"<h4><img src='"+src+"'/> &nbsp; "+name+" <button type='button' data-toggle='modal' data-target='#friendChart' class='btn btn-default' onclick=\"showRisk('"+risk+"')\">Risk</button> &nbsp; <button type='button' class='btn btn-danger' onclick=\"removeFriend('"+name+"')\">X</button></h4>");
+		$("#friends").html(html+"<h4 id='friend"+name+"'><img src='"+src+"'/> &nbsp; "+name+" <button type='button' data-toggle='modal' data-target='#friendChart' class='btn btn-default' onclick=\"showRisk('"+risk+"')\">Risk</button> &nbsp; <button type='button' class='btn btn-danger' onclick=\"removeFriend('"+name+"')\">X</button></h4>");
 
 	}
 	$.ajax({
@@ -149,28 +150,29 @@ function addFriend(string){
 	   type: 'GET'
 	});
 	
+	
 }
 function sendScore(score){
 	var riskNew = $.parseJSON(riskSess);
 	var add;
 	if(score > 150){
-		add = (score-150)/100;
+		add = (score-150)/10;
 		riskNew[0] = riskNew[0] + add;
-		riskNew[1] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[1] += (Math.random() * (100 - -100) + -100) / 20;
 		riskNew[2] = riskNew[2] - add;
-		riskNew[3] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[3] += (Math.random() * (100 - -100) + -100) / 20;
 		riskNew[4] = riskNew[4] + add;
-		riskNew[5] += (Math.random() * (100 - -100) + -100) / 100;
-		riskNew[6] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[5] += (Math.random() * (100 - -100) + -100) / 20;
+		riskNew[6] += (Math.random() * (100 - -100) + -100) / 20;
 	}else{
-		add = (150-score)/100;
+		add = (150-score)/10;
 		riskNew[0] = riskNew[0] - add;
-		riskNew[1] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[1] += (Math.random() * (100 - -100) + -100) / 20;
 		riskNew[2] = riskNew[2] + add;
-		riskNew[3] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[3] += (Math.random() * (100 - -100) + -100) / 20;
 		riskNew[4] = riskNew[4] - add;
-		riskNew[5] += (Math.random() * (100 - -100) + -100) / 100;
-		riskNew[6] += (Math.random() * (100 - -100) + -100) / 100;
+		riskNew[5] += (Math.random() * (100 - -100) + -100) / 20;
+		riskNew[6] += (Math.random() * (100 - -100) + -100) / 20;
 	}
 	riskSess = JSON.stringify(riskNew); //make changes on client side
 	$.ajax({
@@ -336,9 +338,9 @@ function runSimulation(){
 		$("#simEconomy").html("Economy: <b style='color:green'>Good!</b>");
 	}
 	
-	if(lifespan < 2){
+	if(lifespan < 5){
 		$("#simLifespan").html("Lifespan: <b style='color:red'>Bad...</b>");
-	}else if(lifespan > 2 && lifespan < 5.2){
+	}else if(lifespan > 5 && lifespan < 6){
 		$("#simLifespan").html("Lifespan: <b style='color:black'>Okay.</b>");
 	}else{
 		$("#simLifespan").html("Lifespan: <b style='color:green'>Good!</b>");
@@ -486,7 +488,7 @@ function runSimulation(){
         }
     ]
 		};
-
+		var ticks = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
 		var mySimChart = new Chart(ctx, {
 			type: 'line',
 			data: data,
@@ -495,10 +497,25 @@ function runSimulation(){
 					ticks: {
 						beginAtZero: true,
 					}
+				},
+				yAxes: [{
+				ticks: {
+				  autoSkip: false,
+				  min: ticks[ticks.length - 1],
+				  max: ticks[0]
+				},
+				afterBuildTicks: function(scale) {
+				  scale.ticks = ticks;
+				  return;
+				},
+				beforeUpdate: function(oScale) {
+				  return;
 				}
-		}
+			  }]
+			}
+		
 		});
-	
+		mySimChart.render();
 	
 }
 function spritePick(name){

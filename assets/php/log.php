@@ -57,8 +57,8 @@ if($rows != 0){
 	$signup = false;
 }else{
 	//check if emails don't match
-	$stmt = $conn->prepare("SELECT * FROM `AIG_Players` WHERE `Name` = :name");
-	$stmt->bindParam(':name', $screen, PDO::PARAM_STR);
+	$stmt = $conn->prepare("SELECT * FROM `AIG_Players` WHERE `Email` = :email");
+	$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 	$rows = $stmt->rowCount();
@@ -121,7 +121,7 @@ if($signup == false){
 				$_SESSION["screen"] = $player["Name"];
 				$_SESSION["sprite"] = $player["Sprite"];
 				$_SESSION["email"] = $player["Email"];
-				$_SESSION["social"] = $player["Social"];
+				$_SESSION["social"] = json_encode($player["Social"]);
 				$_SESSION["risk"] = $player["Risk"];
 				$_SESSION["decisions"] = 0;
 				exit("0");

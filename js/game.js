@@ -533,6 +533,15 @@ function stopMinigame(){
 	diamonds.callAll('kill');
 	cars.callAll('kill');
 	miniScore = 0;
+	trafficCounter = 0;
+	faster = 0;
+	spawn = 0;
+	traffic = 0;
+	trafficSpeed = 200;
+	trafficMax = 10000;
+	trafficMin = 5000;
+	trafficCounted = 90;
+	trafficTime = Math.floor(Math.random() * ((trafficMax-trafficMin)+1) + trafficMin);
 	playerMini.visible = true;
 	playerMini.reset(15,15);
 	wallGroup.visible = true;
@@ -1216,7 +1225,13 @@ function answerDecisionSend(letter){
 		for(var i = 0; i < change.length; i++){
 			var tmp = change[i];
 			var arr = tmp.split("|");
-			riskNew[arr[0]] += Number(arr[1]);
+			var check = riskNew[arr[0]] + Number(arr[1]);
+			if(check > 100){
+				check = 100;
+			}else if(check < 0){
+				check = 0;
+			}
+			riskNew[arr[0]] = check;
 		}
 		riskSess = JSON.stringify(riskNew); //make changes on client side
 		dec = dec + 1;
